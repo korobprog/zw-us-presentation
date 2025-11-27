@@ -202,8 +202,10 @@
     "web": "www.zerowasteindia.info"
   },
   "swipeHint": {
-    "title": "Swipe to Navigate",
-    "message": "Swipe left or right to switch between slides",
+    "title": "Presentation Navigation",
+    "message": "Swipe left or right to switch between slides. Scroll up and down to view content on the slide.",
+    "swipeLeftRight": "Slides",
+    "scrollUpDown": "Content",
     "button": "Got it"
   }
 }

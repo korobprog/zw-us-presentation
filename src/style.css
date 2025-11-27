@@ -1586,17 +1586,32 @@ li::before {
     animation: slideUp 0.5s ease-out;
 }
 
-.swipe-hint-icon {
-    margin: 0 auto 30px;
-    color: var(--accent-color);
+.swipe-hint-icons {
     display: flex;
     justify-content: center;
+    gap: 40px;
+    margin: 0 auto 30px;
+    flex-wrap: wrap;
+}
+
+.swipe-hint-icon {
+    color: var(--accent-color);
+    display: flex;
+    flex-direction: column;
     align-items: center;
+    gap: 10px;
 }
 
 .swipe-hint-icon svg {
     filter: drop-shadow(0 0 20px rgba(0, 209, 193, 0.5));
     animation: swipeHintPulse 2s ease-in-out infinite;
+}
+
+.swipe-hint-icon-label {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    font-weight: 500;
+    text-align: center;
 }
 
 @keyframes swipeHintPulse {
@@ -1658,9 +1673,17 @@ li::before {
         font-size: 1rem;
     }
     
+    .swipe-hint-icons {
+        gap: 30px;
+    }
+    
     .swipe-hint-icon svg {
-        width: 50px;
-        height: 50px;
+        width: 40px;
+        height: 40px;
+    }
+    
+    .swipe-hint-icon-label {
+        font-size: 0.8rem;
     }
 }
 

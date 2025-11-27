@@ -44,8 +44,12 @@ function App() {
     }
   }, [i18n]);
 
+  const [showSwipeHint, setShowSwipeHint] = useState(false);
+
   const handleLanguageSelected = () => {
     setShowLanguageSelector(false);
+    // Показываем подсказку о навигации после выбора языка
+    setShowSwipeHint(true);
   };
 
   useEffect(() => {
@@ -233,7 +237,7 @@ function App() {
 
   return (
     <div className="app">
-      <SwipeHint />
+      <SwipeHint showAfterLanguageSelect={showSwipeHint} />
       <div className="presentation-wrapper">
         <div 
           className="slides-container"
