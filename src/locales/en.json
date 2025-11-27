@@ -1,0 +1,205 @@
+{
+  "prevBtn": "Previous",
+  "nextBtn": "Next",
+  "exportBtn": "Export",
+  "exportPptxBtn": "Export to PPTX",
+  "exportPdfBtn": "Export to PDF",
+  "slide1": {
+    "h1": "ZW&US — Zero Waste & Full Employment System",
+    "h2": "Pilot and Scaling of Global Circular Economy",
+    "direction": "Direction: Ecology, Recycling, Social Economy, Green Industry",
+    "partners": "Partners: Zero Waste Earth Alliance Foundation, Bionomix Solutions, Ecopoly Composite, ZWI Recycling",
+    "quote": "\"We clean the Earth — creating jobs, matter, and abundance\""
+  },
+  "slide2": {
+    "h2": "Project Summary",
+    "h3": "Integrated Global Circular Economy System",
+    "card1": {
+      "h4": "Who We Are",
+      "p": "Integrated system combining ecological, social, and technological solutions based on circular economy."
+    },
+    "card2": {
+      "h4": "The Solution",
+      "p": "Zero Waste system including waste collection, sorting, recycling, and production of materials, energy, and agrosystems."
+    },
+    "card3": {
+      "h4": "Problem Solved",
+      "p": "Elimination of landfills, pollution, resource scarcity, and ecosystem destruction."
+    },
+    "card4": {
+      "h4": "Key Effects",
+      "li1": "Up to 100% recycling of dry waste",
+      "li2": "Creation of 8–12 profit streams",
+      "li3": "Full territory employment"
+    }
+  },
+  "slide3": {
+    "h2": "The Problem",
+    "subtitle": "Global waste crisis, ineffective solutions, lack of integrated approach",
+    "h3-1": "Global Waste Crisis",
+    "p1": "India produces <strong>5.6M tons</strong> of plastic waste annually; 40% is not recycled.",
+    "h3-2": "Why Existing Solutions Fail",
+    "li1": "Linear economy: \"Take → Make → Waste\"",
+    "li2": "Growing landfills, soil & water poisoning",
+    "li3": "High unemployment & migration",
+    "li4": "Most recyclers can't handle mixed RDF",
+    "alert": "<strong>Scale of Loss:</strong> Up to 70% of dry waste is currently burned or dumped."
+  },
+  "slide4": {
+    "h2": "Description of Solution",
+    "li1": "Door-to-door dry waste collection",
+    "li2": "Network of MRF centers for sorting",
+    "li3": "Mobile RDF shredding",
+    "li4": "RPC Plants — Plywood, boards, beams production",
+    "li5": "Construction of buildings, furniture, hangars",
+    "li6": "Zero Waste Agrosystem (soil, biomass, biogas)",
+    "li7": "Energy Infrastructure",
+    "li8": "Education & Social Programs",
+    "req": "<strong>Requirements:</strong> Land (1400-4200 m²), RDF access, Power, Permits",
+    "effects": "<strong>Effects:</strong> ₹2.7 CR/mo revenue, 100% RDF recycling, 200+ jobs"
+  },
+  "slide5": {
+    "h2": "Technology & Innovation",
+    "h3-1": "RPC Technology",
+    "p1": "Recycled Polymer Composite: Converting RDF (mixed polymers + fiber) into construction materials superior to wood.",
+    "h3-2": "Key Innovations",
+    "li1": "Press-extrusion under 200 tons pressure",
+    "li2": "Mobile agglomerators",
+    "li3": "Mixed composite mass HSSPC",
+    "li4": "Zero landfilling of RDF",
+    "li5": "Rapid industrial tent assembly",
+    "highlight": "Technological Breakthrough: Processing what was previously considered unrecyclable."
+  },
+  "slide6": {
+    "h2": "Competitive Advantages",
+    "th1": "Parameter",
+    "th2": "ZW&US",
+    "th3": "Typical Recycler",
+    "th4": "Landfill",
+    "row1": {
+      "td1": "RDF Processing",
+      "td2": "100%",
+      "td3": "No",
+      "td4": "No"
+    },
+    "row2": {
+      "td1": "Products",
+      "td2": "Construction Materials",
+      "td3": "Raw Materials",
+      "td4": "Waste"
+    },
+    "row3": {
+      "td1": "Ecology",
+      "td2": "Zero Waste",
+      "td3": "Low",
+      "td4": "Very Low"
+    },
+    "row4": {
+      "td1": "Social Effect",
+      "td2": "High Employment",
+      "td3": "Low",
+      "td4": "None"
+    },
+    "row5": {
+      "td1": "Business Model",
+      "td2": "Full Ecosystem (11 streams)",
+      "td3": "Single Plant",
+      "td4": "Dumping Fees"
+    }
+  },
+  "slide7": {
+    "h2": "Market & Business Model",
+    "subtitle": "Global Market $2.6 Trillion",
+    "h3-1": "Revenue Sources",
+    "li1": "RPC Material Production",
+    "li2": "Construction & Modular Buildings",
+    "li3": "Sorting & Recyclables Sale",
+    "li4": "Space Rental",
+    "li5": "System Licensing",
+    "li6": "Educational Programs",
+    "li7": "Carbon Credits",
+    "chart-h3": "Market Distribution ($ Billion)"
+  },
+  "slide8": {
+    "h2": "Pilot Project: Naggar",
+    "p": "Reference Territory Launch for 200,000 Residents",
+    "h3-1": "Scope",
+    "scope": {
+      "li1": "RPC Plant",
+      "li2": "8 MRF Centers",
+      "li3": "Mobile Shredding",
+      "li4": "Farm & Education Center"
+    },
+    "h3-2": "KPIs",
+    "kpi": {
+      "li1": "120 tons waste/month",
+      "li2": "₹2.7 CR revenue/month",
+      "li3": "206 jobs",
+      "li4": "1000+ tons CO₂/year"
+    },
+    "h3-3": "Timeline: 5-7 Months",
+    "timeline": {
+      "li1": "Land & Permits",
+      "li2": "Tent Plant & MRF-1",
+      "li3": "Equipment Installation",
+      "li4": "Staff Training",
+      "li5": "Production Launch",
+      "li6": "Scaling"
+    }
+  },
+  "slide9": {
+    "h2": "Costs & Economic Effect",
+    "card1": {
+      "h3": "Investment",
+      "num1": "₹5.35 Cr",
+      "label1": "RPC Plant",
+      "num2": "₹13 Cr",
+      "label2": "Full System"
+    },
+    "card2": {
+      "h3": "Monthly Economics",
+      "num1": "₹2.7 Cr",
+      "label1": "Gross Revenue",
+      "num2": "~₹1.2 Cr",
+      "label2": "Net Profit"
+    },
+    "card3": {
+      "h3": "ROI",
+      "num1": "4.76 mo",
+      "label1": "Operational",
+      "num2": "24 mo",
+      "label2": "Full Infrastructure"
+    }
+  },
+  "slide10": {
+    "h2": "Team Project",
+    "p": "Experienced team with 20 years of expertise in Zero Waste systems in Russia, India, and BRICS.",
+    "li1": "<strong>Founders:</strong> Technology, System, Management",
+    "li2": "<strong>Scientists:</strong> Missionaries & Peacemakers",
+    "li3": "<strong>Engineers:</strong> Equipment (Extruders, Agglomerators)",
+    "li4": "<strong>Departments:</strong> Ecology, Education, Finance, Legal",
+    "exp": "<strong>Why Us?</strong> 20 years of practical testing (2005-2021). Own technologies. Proven implementation model."
+  },
+  "slide11": {
+    "h2": "Scaling Plan",
+    "h3-1": "From Pilot to 49,000 Systems",
+    "li1": "<strong>Pilot:</strong> Naggar",
+    "li2": "<strong>Expansion:</strong> Hub with 24 lines/month, 8 regional companies",
+    "li3": "<strong>Scale:</strong> 49,000 local systems across India",
+    "h3-2": "Post-Pilot Steps",
+    "steps": {
+      "li1": "Expand MRF centers",
+      "li2": "Launch 2-3 extra RPC lines",
+      "li3": "Zero Waste Local College"
+    }
+  },
+  "slide12": {
+    "h1": "Ready for the Future Economy?",
+    "h2": "\"We don't just recycle waste — we build a new economy\"",
+    "proposal": "<strong>Proposal:</strong> Launch a pilot on your territory within 30 days.",
+    "contact": "<strong>Contact Us:</strong>",
+    "phone": "+91-74-7749-7749 (WhatsApp)",
+    "web": "www.zerowasteindia.info"
+  }
+}
+
