@@ -7,6 +7,35 @@
     --accent-secondary: #A9FF5E;
     --slide-width: 1280px;
     --slide-height: 720px;
+    --slide-padding: 60px 80px;
+    --grid-gap: 60px;
+    --card-padding: 30px;
+}
+
+/* Адаптивные переменные для планшетов */
+@media (min-width: 768px) and (max-width: 1023px) {
+    :root {
+        --slide-padding: 40px 50px;
+        --grid-gap: 25px;
+        --card-padding: 20px;
+    }
+}
+
+/* Адаптивные переменные для мобильных */
+@media (max-width: 768px) {
+    :root {
+        --slide-padding: 20px 25px;
+        --grid-gap: 20px;
+        --card-padding: 20px;
+    }
+}
+
+@media (max-width: 480px) {
+    :root {
+        --slide-padding: 15px 20px;
+        --grid-gap: 15px;
+        --card-padding: 15px;
+    }
 }
 
 * {
@@ -224,6 +253,9 @@ button.lang-toggle:hover {
     background: var(--bg-color);
     overflow: hidden;
     box-shadow: 0 0 50px rgba(0, 0, 0, 0.7);
+    max-width: 100%;
+    max-height: 100vh;
+    max-height: 100dvh;
 }
 
 .slide {
@@ -235,7 +267,7 @@ button.lang-toggle:hover {
     opacity: 0;
     visibility: hidden;
     transition: opacity 0.6s cubic-bezier(0.4, 0, 0.2, 1);
-    padding: 60px 80px;
+    padding: var(--slide-padding);
     display: flex;
     flex-direction: column;
     background: var(--bg-color);
@@ -391,7 +423,7 @@ li::before {
 .grid-2 {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 60px;
+    gap: var(--grid-gap);
     height: 100%;
     align-items: start;
 }
@@ -399,12 +431,12 @@ li::before {
 .grid-3 {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
-    gap: 40px;
+    gap: calc(var(--grid-gap) * 0.67);
 }
 
 .content-with-image {
     display: flex;
-    gap: 60px;
+    gap: var(--grid-gap);
     align-items: center;
     height: 80%;
 }
@@ -434,7 +466,7 @@ li::before {
 
 .card {
     background: var(--card-bg);
-    padding: 30px;
+    padding: var(--card-padding);
     border-radius: 8px;
     border: 1px solid rgba(255, 255, 255, 0.05);
     transition: transform 0.3s;
@@ -874,28 +906,187 @@ li::before {
     letter-spacing: 1px;
 }
 
-@media (max-width: 768px) {
-    .language-selector-title {
-        font-size: 1.8rem;
-        margin-bottom: 30px;
-    }
-    
-    .language-selector-buttons {
-        flex-direction: column;
-        gap: 20px;
-    }
-    
-    .language-selector-btn {
-        min-width: 100%;
+/* ============================================
+   АДАПТИВНЫЙ ДИЗАЙН ДЛЯ ВСЕХ ТИПОВ ЭКРАНОВ
+   ============================================ */
+
+/* Большие экраны (>1920px) */
+@media (min-width: 1921px) {
+    .slides-container {
+        transform: scale(1.1);
+        transform-origin: center;
     }
 }
 
-/* Мобильные устройства в альбомной ориентации */
+/* Планшеты в альбомной ориентации (1024px - 1440px) */
+@media (min-width: 1024px) and (max-width: 1440px) {
+    .slides-container {
+        width: 100%;
+        max-width: 100vw;
+        height: auto;
+        aspect-ratio: 16 / 9;
+        max-height: 100vh;
+        max-height: 100dvh;
+    }
+    
+    .slide {
+        padding: 50px 60px;
+    }
+    
+    h1 {
+        font-size: 3.2rem;
+    }
+    
+    h2 {
+        font-size: 2.4rem;
+    }
+    
+    h3 {
+        font-size: 1.3rem;
+    }
+    
+    p {
+        font-size: 1rem;
+    }
+    
+    .title-slide h1 {
+        font-size: 3.5rem;
+    }
+    
+    .title-slide h2 {
+        font-size: 1.6rem;
+    }
+    
+    .grid-2 {
+        gap: 40px;
+    }
+    
+    .grid-3 {
+        grid-template-columns: 1fr 1fr;
+        gap: 30px;
+    }
+    
+    .content-with-image {
+        gap: 40px;
+        flex-direction: column;
+    }
+    
+    .content-with-image.reverse {
+        flex-direction: column;
+    }
+    
+    .img-col img {
+        max-height: 400px;
+    }
+    
+    .card {
+        padding: 25px;
+    }
+}
+
+/* Планшеты в портретной ориентации (768px - 1023px) */
+@media (min-width: 768px) and (max-width: 1023px) {
+    body {
+        overflow: hidden;
+        height: 100vh;
+        height: 100dvh;
+        padding: 0;
+    }
+    
+    .app {
+        height: 100vh;
+        height: 100dvh;
+        overflow: hidden;
+        padding: 0;
+    }
+    
+    .slides-container {
+        width: 100vw;
+        height: 100vh;
+        height: 100dvh;
+        max-width: 100%;
+        max-height: 100%;
+        box-shadow: none;
+    }
+    
+    .slide {
+        padding: 40px 50px;
+    }
+    
+    h1 {
+        font-size: 2.8rem;
+    }
+    
+    h2 {
+        font-size: 2.2rem;
+    }
+    
+    h3 {
+        font-size: 1.25rem;
+    }
+    
+    p {
+        font-size: 0.98rem;
+    }
+    
+    .title-slide h1 {
+        font-size: 3.2rem;
+    }
+    
+    .title-slide h2 {
+        font-size: 1.5rem;
+    }
+    
+    .title-slide {
+        padding: 50px !important;
+    }
+    
+    .grid-2 {
+        grid-template-columns: 1fr;
+        gap: 25px;
+    }
+    
+    .grid-3 {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+    
+    .content-with-image {
+        flex-direction: column;
+        gap: 30px;
+        height: auto;
+    }
+    
+    .content-with-image.reverse {
+        flex-direction: column;
+    }
+    
+    .img-col img {
+        max-height: 350px;
+    }
+    
+    .card {
+        padding: 20px;
+    }
+    
+    .controls {
+        bottom: 15px;
+        padding: 10px 18px;
+        font-size: 0.75rem;
+    }
+    
+    button {
+        padding: 10px 18px;
+        font-size: 0.75rem;
+    }
+}
+
+/* Мобильные устройства в альбомной ориентации (до 1024px landscape) */
 @media (max-width: 1024px) and (orientation: landscape) {
     body {
         overflow: hidden;
         height: 100vh;
-        height: 100dvh; /* Динамическая высота viewport для мобильных */
+        height: 100dvh;
         padding: 0;
         margin: 0;
     }
@@ -918,69 +1109,423 @@ li::before {
     }
     
     .slide {
-        padding: 20px 30px;
+        padding: 15px 25px;
     }
     
     h1 {
-        font-size: 2.5rem;
+        font-size: 2.2rem;
     }
     
     h2 {
-        font-size: 2rem;
+        font-size: 1.8rem;
     }
     
     h3 {
-        font-size: 1.2rem;
+        font-size: 1.1rem;
+        padding-left: 12px;
+    }
+    
+    h4 {
+        font-size: 1rem;
     }
     
     p {
-        font-size: 0.95rem;
+        font-size: 0.9rem;
+        margin-bottom: 0.8em;
+    }
+    
+    li {
+        font-size: 0.9rem;
+        margin-bottom: 0.6em;
     }
     
     .title-slide h1 {
-        font-size: 3rem;
+        font-size: 2.5rem;
     }
     
     .title-slide h2 {
-        font-size: 1.4rem;
+        font-size: 1.3rem;
     }
     
     .title-slide {
-        padding: 40px !important;
+        padding: 30px !important;
+    }
+    
+    .title-slide p {
+        font-size: 0.85rem;
+    }
+    
+    .title-slide .quote {
+        font-size: 1.2rem !important;
     }
     
     .grid-2 {
-        gap: 30px;
+        grid-template-columns: 1fr 1fr;
+        gap: 20px;
+    }
+    
+    .grid-3 {
+        grid-template-columns: 1fr 1fr;
+        gap: 15px;
     }
     
     .content-with-image {
-        gap: 30px;
+        gap: 20px;
+        flex-direction: row;
+    }
+    
+    .content-with-image.reverse {
+        flex-direction: row-reverse;
+    }
+    
+    .img-col img {
+        max-height: 250px;
+    }
+    
+    .card {
+        padding: 15px;
+    }
+    
+    .stat-card {
+        padding: 20px 15px;
+    }
+    
+    .big-num {
+        font-size: 2.5rem;
     }
     
     .controls {
-        bottom: 10px;
-        padding: 8px 15px;
-        font-size: 0.7rem;
+        bottom: 8px;
+        padding: 6px 12px;
+        gap: 10px;
+        font-size: 0.65rem;
     }
     
     button {
-        padding: 8px 15px;
-        font-size: 0.7rem;
+        padding: 6px 12px;
+        font-size: 0.65rem;
+    }
+    
+    .comparison-table {
+        font-size: 0.85rem;
+    }
+    
+    .comparison-table th,
+    .comparison-table td {
+        padding: 12px 15px;
+    }
+    
+    .subtitle {
+        font-size: 1.1rem;
     }
 }
 
-/* Мобильные устройства в портретной ориентации */
+/* Мобильные устройства в портретной ориентации (до 768px portrait) */
+@media (max-width: 768px) {
+    .language-selector-title {
+        font-size: 1.8rem;
+        margin-bottom: 30px;
+    }
+    
+    .language-selector-buttons {
+        flex-direction: column;
+        gap: 20px;
+    }
+    
+    .language-selector-btn {
+        min-width: 100%;
+    }
+}
+
 @media (max-width: 768px) and (orientation: portrait) {
     body {
         overflow: hidden;
         height: 100vh;
         height: 100dvh;
+        padding: 0;
     }
     
     .app {
         height: 100vh;
         height: 100dvh;
         overflow: hidden;
+        padding: 0;
+    }
+    
+    .slides-container {
+        width: 100vw;
+        height: 100vh;
+        height: 100dvh;
+        max-width: 100%;
+        max-height: 100%;
+        box-shadow: none;
+    }
+    
+    .slide {
+        padding: 20px 25px;
+    }
+    
+    h1 {
+        font-size: 2rem;
+    }
+    
+    h2 {
+        font-size: 1.6rem;
+        margin-bottom: 0.6em;
+    }
+    
+    h3 {
+        font-size: 1.1rem;
+        padding-left: 12px;
+        margin-bottom: 0.4em;
+    }
+    
+    h4 {
+        font-size: 0.95rem;
+    }
+    
+    p {
+        font-size: 0.9rem;
+        margin-bottom: 0.8em;
+        line-height: 1.5;
+    }
+    
+    li {
+        font-size: 0.9rem;
+        margin-bottom: 0.5em;
+        padding-left: 20px;
+    }
+    
+    .title-slide h1 {
+        font-size: 2.2rem;
+    }
+    
+    .title-slide h2 {
+        font-size: 1.2rem;
+    }
+    
+    .title-slide {
+        padding: 30px 25px !important;
+    }
+    
+    .title-slide p {
+        font-size: 0.8rem;
+        padding-left: 15px;
+    }
+    
+    .title-slide .quote {
+        font-size: 1.1rem !important;
+        margin-top: 20px;
+    }
+    
+    .grid-2 {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+    
+    .grid-3 {
+        grid-template-columns: 1fr;
+        gap: 15px;
+    }
+    
+    .content-with-image {
+        flex-direction: column;
+        gap: 20px;
+        height: auto;
+    }
+    
+    .content-with-image.reverse {
+        flex-direction: column;
+    }
+    
+    .img-col img {
+        max-height: 300px;
+        width: 100%;
+    }
+    
+    .card {
+        padding: 20px;
+    }
+    
+    .stat-card {
+        padding: 25px 20px;
+    }
+    
+    .big-num {
+        font-size: 2.5rem;
+    }
+    
+    .subtitle {
+        font-size: 1rem;
+        margin-bottom: 1.5em;
+    }
+    
+    .alert {
+        padding: 15px;
+        font-size: 0.9rem;
+    }
+    
+    .highlight-box {
+        padding: 20px;
+        margin-top: 20px;
+    }
+    
+    .comparison-table {
+        font-size: 0.8rem;
+        display: block;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+    }
+    
+    .comparison-table th,
+    .comparison-table td {
+        padding: 10px 12px;
+        white-space: nowrap;
+    }
+    
+    .chart-box {
+        padding: 20px;
+    }
+    
+    .chart-container {
+        padding-left: 30px;
+        padding-bottom: 30px;
+    }
+    
+    .y-axis {
+        font-size: 0.7rem;
+    }
+    
+    .bar-label {
+        font-size: 0.9rem;
+    }
+    
+    .bar-title {
+        font-size: 0.75rem;
+        bottom: -30px;
+    }
+    
+    .controls {
+        bottom: 10px;
+        left: 50%;
+        transform: translateX(-50%);
+        padding: 8px 15px;
+        gap: 10px;
+        font-size: 0.7rem;
+        width: auto;
+        max-width: 95%;
+    }
+    
+    button {
+        padding: 8px 12px;
+        font-size: 0.7rem;
+    }
+    
+    #slideCounter {
+        font-size: 0.7rem;
+    }
+    
+    .export-menu,
+    .lang-menu {
+        bottom: calc(100% + 8px);
+        min-width: 160px;
+        padding: 6px;
+    }
+    
+    .export-menu-item,
+    .lang-menu-item {
+        padding: 10px 12px;
+        font-size: 0.8rem;
+    }
+    
+    .cta-box {
+        padding: 25px;
+        margin-top: 30px;
+    }
+    
+    .cta-box p {
+        font-size: 1.1rem;
+    }
+    
+    .timeline-box {
+        padding: 20px;
+    }
+    
+    .timeline-box ol li {
+        padding-left: 40px;
+    }
+    
+    .timeline-box ol li::before {
+        width: 25px;
+        height: 25px;
+        font-size: 0.9rem;
+    }
+    
+    .experience-box {
+        padding: 15px;
+        margin-top: 15px;
+    }
+}
+
+/* Очень маленькие мобильные устройства (до 480px) */
+@media (max-width: 480px) {
+    .slide {
+        padding: 15px 20px;
+    }
+    
+    h1 {
+        font-size: 1.6rem;
+    }
+    
+    h2 {
+        font-size: 1.3rem;
+    }
+    
+    h3 {
+        font-size: 1rem;
+    }
+    
+    p {
+        font-size: 0.85rem;
+    }
+    
+    .title-slide h1 {
+        font-size: 1.8rem;
+    }
+    
+    .title-slide h2 {
+        font-size: 1rem;
+    }
+    
+    .title-slide {
+        padding: 25px 20px !important;
+    }
+    
+    .card {
+        padding: 15px;
+    }
+    
+    .controls {
+        padding: 6px 10px;
+        font-size: 0.65rem;
+        gap: 8px;
+    }
+    
+    button {
+        padding: 6px 10px;
+        font-size: 0.65rem;
+    }
+    
+    .orientation-prompt-content {
+        padding: 30px 20px;
+    }
+    
+    .orientation-title {
+        font-size: 1.5rem;
+    }
+    
+    .orientation-message {
+        font-size: 1rem;
     }
 }
 
