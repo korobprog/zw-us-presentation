@@ -201,9 +201,10 @@
     "phone": "+91-74-7749-7749 (WhatsApp)",
     "web": "www.zerowasteindia.info"
   },
-  "orientationPrompt": {
-    "title": "Rotate Screen",
-    "message": "For the best viewing experience, please rotate your device to landscape orientation"
+  "swipeHint": {
+    "title": "Swipe to Navigate",
+    "message": "Swipe left or right to switch between slides",
+    "button": "Got it"
   }
 }
 

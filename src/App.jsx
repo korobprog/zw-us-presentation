@@ -2,7 +2,7 @@ import { useState, useEffect, useRef } from 'react';
 import { useTranslation } from 'react-i18next';
 import Controls from './components/Controls';
 import LanguageSelector from './components/LanguageSelector';
-import OrientationPrompt from './components/OrientationPrompt';
+import SwipeHint from './components/SwipeHint';
 import Slide1 from './components/slides/Slide1';
 import Slide2 from './components/slides/Slide2';
 import Slide3 from './components/slides/Slide3';
@@ -32,6 +32,8 @@ function App() {
   });
   const { i18n } = useTranslation();
   const slideRefs = useRef([]);
+  const touchStartX = useRef(0);
+  const touchEndX = useRef(0);
 
   useEffect(() => {
     const savedLang = localStorage.getItem('presentationLang');
@@ -56,6 +58,35 @@ function App() {
     window.addEventListener('keydown', handleKeyDown);
     return () => window.removeEventListener('keydown', handleKeyDown);
   }, [currentSlide]);
+
+  // Обработчики для свайп-навигации
+  const handleTouchStart = (e) => {
+    touchStartX.current = e.touches[0].clientX;
+  };
+
+  const handleTouchMove = (e) => {
+    touchEndX.current = e.touches[0].clientX;
+  };
+
+  const handleTouchEnd = () => {
+    if (!touchStartX.current || !touchEndX.current) return;
+    
+    const distance = touchStartX.current - touchEndX.current;
+    const minSwipeDistance = 50;
+
+    if (Math.abs(distance) > minSwipeDistance) {
+      if (distance > 0 && currentSlide < slides.length - 1) {
+        // Свайп влево - следующий слайд
+        goToSlide(currentSlide + 1);
+      } else if (distance < 0 && currentSlide > 0) {
+        // Свайп вправо - предыдущий слайд
+        goToSlide(currentSlide - 1);
+      }
+    }
+
+    touchStartX.current = 0;
+    touchEndX.current = 0;
+  };
 
   const goToSlide = (index) => {
     if (index >= 0 && index < slides.length) {
@@ -157,7 +188,7 @@ function App() {
 
   return (
     <div className="app">
-      <OrientationPrompt />
+      <SwipeHint />
       <Controls
         currentSlide={currentSlide}
         totalSlides={slides.length}
@@ -166,7 +197,12 @@ function App() {
         onExport={handleExport}
         onExportPDF={handleExportPDF}
       />
-      <div className="slides-container">
+      <div 
+        className="slides-container"
+        onTouchStart={handleTouchStart}
+        onTouchMove={handleTouchMove}
+        onTouchEnd={handleTouchEnd}
+      >
         {slides.map((SlideComponent, index) => (
           <div
             key={index}
