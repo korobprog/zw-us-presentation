@@ -1,0 +1,47 @@
+:root {
+    --bg-color: #0D1B2A;
+    --card-bg: #1B263B;
+    --text-color: #FFFFFF;
+    --text-muted: #E0E1DD;
+    --accent-color: #00D1C1;
+    --accent-secondary: #A9FF5E;
+    --slide-width: 80rem;
+    /* 1280px / 16 */
+    --slide-height: 45rem;
+    /* 720px / 16 */
+    --slide-padding: 3.75rem 5rem;
+    --slide-padding-bottom: 3.75rem;
+    /* 60px 80px */
+    --grid-gap: 3.75rem;
+    /* 60px */
+    --card-padding: 1.875rem;
+    /* 30px */
+    --controls-offset: 4.5rem;
+}
+
+/* Адаптивные переменные отключены, так как используется масштабирование всего контейнера
+@media (min-width: 768px) and (max-width: 1023px) {
+    :root {
+        --slide-padding: 2.5rem 3.125rem;
+        --grid-gap: 1.5625rem;
+        --card-padding: 1.25rem;
+    }
+}
+
+@media (max-width: 768px) {
+    :root {
+        --slide-padding: 1.25rem 1.5625rem;
+        --grid-gap: 1.25rem;
+        --card-padding: 1.25rem;
+    }
+}
+
+@media (max-width: 480px) {
+    :root {
+        --slide-padding: 0.9375rem 1.25rem;
+        --grid-gap: 0.9375rem;
+        --card-padding: 0.9375rem;
+    }
+}
+*/
+

@@ -4,7 +4,7 @@ function Slide4() {
   const { t } = useTranslation();
 
   return (
-    <div className="slide-content">
+    <div className="slide-content slide4-content">
       <h2>{t('slide4.h2')}</h2>
       <div className="content-with-image">
         <div className="text-col">

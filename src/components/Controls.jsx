@@ -1,7 +1,15 @@
 import { useState, useEffect, useRef } from 'react';
 import { useTranslation } from 'react-i18next';
 
-function Controls({ currentSlide, totalSlides, onPrev, onNext, onExport, onExportPDF }) {
+function Controls({
+  currentSlide,
+  totalSlides,
+  onPrev,
+  onNext,
+  onExport,
+  onExportPDF,
+  variant = 'desktop'
+}) {
   const { t, i18n } = useTranslation();
   const [showExportMenu, setShowExportMenu] = useState(false);
   const [showLangMenu, setShowLangMenu] = useState(false);
@@ -53,7 +61,7 @@ function Controls({ currentSlide, totalSlides, onPrev, onNext, onExport, onExpor
   }, [showExportMenu, showLangMenu]);
 
   return (
-    <div className="controls">
+    <div className={`controls controls-${variant}`}>
       <button id="prevBtn" onClick={onPrev} disabled={currentSlide === 0}>
         {t('prevBtn')}
       </button>

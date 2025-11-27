@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef } from 'react';
 import { useTranslation } from 'react-i18next';
 import Controls from './components/Controls';
+import MobileControls from './components/MobileControls';
 import LanguageSelector from './components/LanguageSelector';
 import SwipeHint from './components/SwipeHint';
 import Slide1 from './components/slides/Slide1';
@@ -44,6 +45,44 @@ function App() {
     }
   }, [i18n]);
 
+  // Scaling Logic
+  const [scale, setScale] = useState(1);
+  const [isResponsive, setIsResponsive] = useState(false);
+  const [isMobileControls, setIsMobileControls] = useState(false);
+
+  useEffect(() => {
+    const handleResize = () => {
+      const slideWidth = 1280;
+      const slideHeight = 720;
+      const windowWidth = window.innerWidth;
+      const windowHeight = window.innerHeight;
+
+      console.log('Resize:', { windowWidth, windowHeight, slideWidth, slideHeight });
+
+      // Threshold for switching to responsive mode
+      // User complained about 1024px, so we include it in responsive mode
+      if (windowWidth <= 1024) {
+        console.log('Switching to Responsive Mode');
+        setIsResponsive(true);
+        setScale(1); // Reset scale for responsive mode
+      } else {
+        console.log('Switching to Scaling Mode');
+        setIsResponsive(false);
+        const scaleX = windowWidth / slideWidth;
+        const scaleY = windowHeight / slideHeight;
+        const newScale = Math.min(scaleX, scaleY);
+        setScale(newScale);
+      }
+
+      setIsMobileControls(windowWidth <= 768);
+    };
+
+    window.addEventListener('resize', handleResize);
+    handleResize(); // Initial calculation
+
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
   const [showSwipeHint, setShowSwipeHint] = useState(false);
 
   const handleLanguageSelected = () => {
@@ -68,21 +107,21 @@ function App() {
   // Проверка, является ли элемент таблицей или прокручиваемым контейнером
   const isScrollableElement = (element) => {
     if (!element) return false;
-    
+
     // Проверяем, является ли элемент таблицей или находится внутри таблицы
-    if (element.tagName === 'TABLE' || 
-        element.closest('table') || 
-        element.classList.contains('comparison-table')) {
+    if (element.tagName === 'TABLE' ||
+      element.closest('table') ||
+      element.classList.contains('comparison-table')) {
       return true;
     }
-    
+
     // Проверяем, есть ли у элемента горизонтальная прокрутка
     const style = window.getComputedStyle(element);
     const overflowX = style.overflowX;
     if (overflowX === 'auto' || overflowX === 'scroll') {
       return true;
     }
-    
+
     return false;
   };
 
@@ -100,14 +139,14 @@ function App() {
   const handleTouchMove = (e) => {
     // Если touch начался на прокручиваемом элементе, не обрабатываем
     if (!touchStartX.current) return;
-    
+
     touchEndX.current = e.touches[0].clientX;
     touchEndY.current = e.touches[0].clientY;
   };
 
   const handleTouchEnd = () => {
     if (!touchStartX.current || !touchEndX.current) return;
-    
+
     const distanceX = touchStartX.current - touchEndX.current;
     const distanceY = touchStartY.current - touchEndY.current;
     const minSwipeDistance = 50;
@@ -239,8 +278,12 @@ function App() {
     <div className="app">
       <SwipeHint showAfterLanguageSelect={showSwipeHint} />
       <div className="presentation-wrapper">
-        <div 
-          className="slides-container"
+        <div
+          className={`slides-container ${isResponsive ? 'responsive-mode' : ''}`}
+          style={isResponsive ? {} : {
+            transform: `scale(${scale})`,
+            transformOrigin: 'center center'
+          }}
           onTouchStart={handleTouchStart}
           onTouchMove={handleTouchMove}
           onTouchEnd={handleTouchEnd}
@@ -256,14 +299,25 @@ function App() {
             </div>
           ))}
         </div>
-        <Controls
-          currentSlide={currentSlide}
-          totalSlides={slides.length}
-          onPrev={() => goToSlide(currentSlide - 1)}
-          onNext={() => goToSlide(currentSlide + 1)}
-          onExport={handleExport}
-          onExportPDF={handleExportPDF}
-        />
+        {isMobileControls ? (
+          <MobileControls
+            currentSlide={currentSlide}
+            totalSlides={slides.length}
+            onPrev={() => goToSlide(currentSlide - 1)}
+            onNext={() => goToSlide(currentSlide + 1)}
+            onExport={handleExport}
+            onExportPDF={handleExportPDF}
+          />
+        ) : (
+          <Controls
+            currentSlide={currentSlide}
+            totalSlides={slides.length}
+            onPrev={() => goToSlide(currentSlide - 1)}
+            onNext={() => goToSlide(currentSlide + 1)}
+            onExport={handleExport}
+            onExportPDF={handleExportPDF}
+          />
+        )}
       </div>
     </div>
   );
