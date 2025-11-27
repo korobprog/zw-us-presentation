@@ -127,6 +127,12 @@ function App() {
 
   // Обработчики для свайп-навигации
   const handleTouchStart = (e) => {
+    if (isMobileControls) {
+      // На мобильных отдаем приоритет вертикальной прокрутке
+      touchStartX.current = 0;
+      return;
+    }
+
     // Проверяем, начался ли touch на прокручиваемом элементе
     if (isScrollableElement(e.target)) {
       touchStartX.current = 0; // Не обрабатываем свайп для навигации
@@ -137,15 +143,26 @@ function App() {
   };
 
   const handleTouchMove = (e) => {
-    // Если touch начался на прокручиваемом элементе, не обрабатываем
-    if (!touchStartX.current) return;
+    if (isMobileControls || !touchStartX.current) return;
 
+    // Если touch начался на прокручиваемом элементе, не обрабатываем
     touchEndX.current = e.touches[0].clientX;
     touchEndY.current = e.touches[0].clientY;
+
+    const deltaX = touchStartX.current - touchEndX.current;
+    const deltaY = touchStartY.current - touchEndY.current;
+
+    if (Math.abs(deltaY) > Math.abs(deltaX)) {
+      // Вертикальный жест — позволяем странице прокручиваться
+      touchStartX.current = 0;
+      touchEndX.current = 0;
+      touchStartY.current = 0;
+      touchEndY.current = 0;
+    }
   };
 
   const handleTouchEnd = () => {
-    if (!touchStartX.current || !touchEndX.current) return;
+    if (isMobileControls || !touchStartX.current || !touchEndX.current) return;
 
     const distanceX = touchStartX.current - touchEndX.current;
     const distanceY = touchStartY.current - touchEndY.current;
