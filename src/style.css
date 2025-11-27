@@ -19,6 +19,10 @@
 html {
     touch-action: manipulation;
     -webkit-text-size-adjust: 100%;
+    overflow-x: hidden;
+    /* Предотвращаем bounce-эффект на iOS */
+    overscroll-behavior: none;
+    -webkit-overflow-scrolling: touch;
 }
 
 body {
@@ -31,6 +35,8 @@ body {
     min-height: 100vh;
     min-height: 100dvh;
     color: var(--text-color);
+    /* Предотвращаем bounce-эффект на iOS */
+    overscroll-behavior: none;
     /* Поддержка safe-area для устройств с вырезами */
     padding: env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left);
 }
