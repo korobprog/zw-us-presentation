@@ -200,6 +200,10 @@
     "contact": "<strong>Свяжитесь с нами:</strong>",
     "phone": "+91-74-7749-7749 (WhatsApp)",
     "web": "www.zerowasteindia.info"
+  },
+  "orientationPrompt": {
+    "title": "Поверните экран",
+    "message": "Для лучшего просмотра презентации поверните устройство в альбомную ориентацию"
   }
 }
 

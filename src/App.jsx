@@ -2,6 +2,7 @@ import { useState, useEffect, useRef } from 'react';
 import { useTranslation } from 'react-i18next';
 import Controls from './components/Controls';
 import LanguageSelector from './components/LanguageSelector';
+import OrientationPrompt from './components/OrientationPrompt';
 import Slide1 from './components/slides/Slide1';
 import Slide2 from './components/slides/Slide2';
 import Slide3 from './components/slides/Slide3';
@@ -156,6 +157,7 @@ function App() {
 
   return (
     <div className="app">
+      <OrientationPrompt />
       <Controls
         currentSlide={currentSlide}
         totalSlides={slides.length}
