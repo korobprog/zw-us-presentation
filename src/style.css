@@ -13,6 +13,12 @@
     box-sizing: border-box;
     margin: 0;
     padding: 0;
+    -webkit-tap-highlight-color: transparent;
+}
+
+html {
+    touch-action: manipulation;
+    -webkit-text-size-adjust: 100%;
 }
 
 body {
@@ -23,7 +29,10 @@ body {
     align-items: center;
     justify-content: center;
     min-height: 100vh;
+    min-height: 100dvh;
     color: var(--text-color);
+    /* Поддержка safe-area для устройств с вырезами */
+    padding: env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left);
 }
 
 .app {
@@ -33,6 +42,7 @@ body {
     align-items: center;
     justify-content: center;
     min-height: 100vh;
+    min-height: 100dvh;
 }
 
 .controls {
@@ -871,6 +881,100 @@ li::before {
     
     .language-selector-btn {
         min-width: 100%;
+    }
+}
+
+/* Мобильные устройства в альбомной ориентации */
+@media (max-width: 1024px) and (orientation: landscape) {
+    body {
+        overflow: hidden;
+        height: 100vh;
+        height: 100dvh; /* Динамическая высота viewport для мобильных */
+        padding: 0;
+        margin: 0;
+    }
+    
+    .app {
+        height: 100vh;
+        height: 100dvh;
+        overflow: hidden;
+        padding: 0;
+        margin: 0;
+    }
+    
+    .slides-container {
+        width: 100vw;
+        height: 100vh;
+        height: 100dvh;
+        max-width: 100%;
+        max-height: 100%;
+        box-shadow: none;
+    }
+    
+    .slide {
+        padding: 20px 30px;
+    }
+    
+    h1 {
+        font-size: 2.5rem;
+    }
+    
+    h2 {
+        font-size: 2rem;
+    }
+    
+    h3 {
+        font-size: 1.2rem;
+    }
+    
+    p {
+        font-size: 0.95rem;
+    }
+    
+    .title-slide h1 {
+        font-size: 3rem;
+    }
+    
+    .title-slide h2 {
+        font-size: 1.4rem;
+    }
+    
+    .title-slide {
+        padding: 40px !important;
+    }
+    
+    .grid-2 {
+        gap: 30px;
+    }
+    
+    .content-with-image {
+        gap: 30px;
+    }
+    
+    .controls {
+        bottom: 10px;
+        padding: 8px 15px;
+        font-size: 0.7rem;
+    }
+    
+    button {
+        padding: 8px 15px;
+        font-size: 0.7rem;
+    }
+}
+
+/* Мобильные устройства в портретной ориентации */
+@media (max-width: 768px) and (orientation: portrait) {
+    body {
+        overflow: hidden;
+        height: 100vh;
+        height: 100dvh;
+    }
+    
+    .app {
+        height: 100vh;
+        height: 100dvh;
+        overflow: hidden;
     }
 }
 
