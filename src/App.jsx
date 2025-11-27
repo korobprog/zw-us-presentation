@@ -34,6 +34,8 @@ function App() {
   const slideRefs = useRef([]);
   const touchStartX = useRef(0);
   const touchEndX = useRef(0);
+  const touchStartY = useRef(0);
+  const touchEndY = useRef(0);
 
   useEffect(() => {
     const savedLang = localStorage.getItem('presentationLang');
@@ -59,26 +61,67 @@ function App() {
     return () => window.removeEventListener('keydown', handleKeyDown);
   }, [currentSlide]);
 
+  // Проверка, является ли элемент таблицей или прокручиваемым контейнером
+  const isScrollableElement = (element) => {
+    if (!element) return false;
+    
+    // Проверяем, является ли элемент таблицей или находится внутри таблицы
+    if (element.tagName === 'TABLE' || 
+        element.closest('table') || 
+        element.classList.contains('comparison-table')) {
+      return true;
+    }
+    
+    // Проверяем, есть ли у элемента горизонтальная прокрутка
+    const style = window.getComputedStyle(element);
+    const overflowX = style.overflowX;
+    if (overflowX === 'auto' || overflowX === 'scroll') {
+      return true;
+    }
+    
+    return false;
+  };
+
   // Обработчики для свайп-навигации
   const handleTouchStart = (e) => {
+    // Проверяем, начался ли touch на прокручиваемом элементе
+    if (isScrollableElement(e.target)) {
+      touchStartX.current = 0; // Не обрабатываем свайп для навигации
+      return;
+    }
     touchStartX.current = e.touches[0].clientX;
+    touchStartY.current = e.touches[0].clientY;
   };
 
   const handleTouchMove = (e) => {
+    // Если touch начался на прокручиваемом элементе, не обрабатываем
+    if (!touchStartX.current) return;
+    
     touchEndX.current = e.touches[0].clientX;
+    touchEndY.current = e.touches[0].clientY;
   };
 
   const handleTouchEnd = () => {
     if (!touchStartX.current || !touchEndX.current) return;
     
-    const distance = touchStartX.current - touchEndX.current;
+    const distanceX = touchStartX.current - touchEndX.current;
+    const distanceY = touchStartY.current - touchEndY.current;
     const minSwipeDistance = 50;
 
-    if (Math.abs(distance) > minSwipeDistance) {
-      if (distance > 0 && currentSlide < slides.length - 1) {
+    // Если вертикальное движение больше горизонтального, это прокрутка, а не свайп
+    if (Math.abs(distanceY) > Math.abs(distanceX)) {
+      touchStartX.current = 0;
+      touchEndX.current = 0;
+      touchStartY.current = 0;
+      touchEndY.current = 0;
+      return;
+    }
+
+    if (Math.abs(distanceX) > minSwipeDistance) {
+      if (distanceX > 0 && currentSlide < slides.length - 1) {
         // Свайп влево - следующий слайд
         goToSlide(currentSlide + 1);
-      } else if (distance < 0 && currentSlide > 0) {
+      } else if (distanceX < 0 && currentSlide > 0) {
         // Свайп вправо - предыдущий слайд
         goToSlide(currentSlide - 1);
       }
@@ -86,6 +129,8 @@ function App() {
 
     touchStartX.current = 0;
     touchEndX.current = 0;
+    touchStartY.current = 0;
+    touchEndY.current = 0;
   };
 
   const goToSlide = (index) => {
@@ -189,30 +234,32 @@ function App() {
   return (
     <div className="app">
       <SwipeHint />
-      <Controls
-        currentSlide={currentSlide}
-        totalSlides={slides.length}
-        onPrev={() => goToSlide(currentSlide - 1)}
-        onNext={() => goToSlide(currentSlide + 1)}
-        onExport={handleExport}
-        onExportPDF={handleExportPDF}
-      />
-      <div 
-        className="slides-container"
-        onTouchStart={handleTouchStart}
-        onTouchMove={handleTouchMove}
-        onTouchEnd={handleTouchEnd}
-      >
-        {slides.map((SlideComponent, index) => (
-          <div
-            key={index}
-            ref={el => slideRefs.current[index] = el}
-            className={`slide ${index === currentSlide ? 'active' : ''}`}
-            data-title={SlideComponent.title || `Slide ${index + 1}`}
-          >
-            <SlideComponent />
-          </div>
-        ))}
+      <div className="presentation-wrapper">
+        <div 
+          className="slides-container"
+          onTouchStart={handleTouchStart}
+          onTouchMove={handleTouchMove}
+          onTouchEnd={handleTouchEnd}
+        >
+          {slides.map((SlideComponent, index) => (
+            <div
+              key={index}
+              ref={el => slideRefs.current[index] = el}
+              className={`slide ${index === currentSlide ? 'active' : ''}`}
+              data-title={SlideComponent.title || `Slide ${index + 1}`}
+            >
+              <SlideComponent />
+            </div>
+          ))}
+        </div>
+        <Controls
+          currentSlide={currentSlide}
+          totalSlides={slides.length}
+          onPrev={() => goToSlide(currentSlide - 1)}
+          onNext={() => goToSlide(currentSlide + 1)}
+          onExport={handleExport}
+          onExportPDF={handleExportPDF}
+        />
       </div>
     </div>
   );
