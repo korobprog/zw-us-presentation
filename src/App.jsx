@@ -37,6 +37,8 @@ function App() {
   const touchEndX = useRef(0);
   const touchStartY = useRef(0);
   const touchEndY = useRef(0);
+  const touchOnScrollable = useRef(false);
+  const ignoreSwipe = useRef(false);
 
   useEffect(() => {
     const savedLang = localStorage.getItem('presentationLang');
@@ -108,57 +110,46 @@ function App() {
   const isScrollableElement = (element) => {
     if (!element) return false;
 
-    // Проверяем, является ли элемент таблицей или находится внутри таблицы
+    const scrollableAncestor = element.closest('.slide');
+    if (scrollableAncestor && scrollableAncestor.scrollHeight > scrollableAncestor.clientHeight) {
+      return true;
+    }
+
     if (element.tagName === 'TABLE' ||
       element.closest('table') ||
       element.classList.contains('comparison-table')) {
       return true;
     }
 
-    // Проверяем, есть ли у элемента горизонтальная прокрутка
     const style = window.getComputedStyle(element);
     const overflowX = style.overflowX;
-    if (overflowX === 'auto' || overflowX === 'scroll') {
-      return true;
-    }
+    const overflowY = style.overflowY;
+    const canScrollX = (overflowX === 'auto' || overflowX === 'scroll') && element.scrollWidth > element.clientWidth;
+    const canScrollY = (overflowY === 'auto' || overflowY === 'scroll') && element.scrollHeight > element.clientHeight;
 
-    return false;
+    return canScrollX || canScrollY;
   };
 
   // Обработчики для свайп-навигации
   const handleTouchStart = (e) => {
-    if (isResponsive) {
-      touchStartX.current = 0;
-      return;
-    }
-
-    if (isMobileControls) {
-      // На мобильных отдаем приоритет вертикальной прокрутке
-      touchStartX.current = 0;
-      return;
-    }
-
-    // Проверяем, начался ли touch на прокручиваемом элементе
-    if (isScrollableElement(e.target)) {
-      touchStartX.current = 0; // Не обрабатываем свайп для навигации
-      return;
-    }
+    touchOnScrollable.current = isScrollableElement(e.target);
+    ignoreSwipe.current = false;
     touchStartX.current = e.touches[0].clientX;
     touchStartY.current = e.touches[0].clientY;
   };
 
   const handleTouchMove = (e) => {
-    if (isResponsive || isMobileControls || !touchStartX.current) return;
+    if (!touchStartX.current) return;
 
-    // Если touch начался на прокручиваемом элементе, не обрабатываем
     touchEndX.current = e.touches[0].clientX;
     touchEndY.current = e.touches[0].clientY;
 
     const deltaX = touchStartX.current - touchEndX.current;
     const deltaY = touchStartY.current - touchEndY.current;
 
-    if (Math.abs(deltaY) > Math.abs(deltaX)) {
-      // Вертикальный жест — позволяем странице прокручиваться
+    if ((touchOnScrollable.current && Math.abs(deltaY) > Math.abs(deltaX)) ||
+      Math.abs(deltaY) > Math.abs(deltaX) + 10) {
+      ignoreSwipe.current = true;
       touchStartX.current = 0;
       touchEndX.current = 0;
       touchStartY.current = 0;
@@ -167,7 +158,16 @@ function App() {
   };
 
   const handleTouchEnd = () => {
-    if (isResponsive || isMobileControls || !touchStartX.current || !touchEndX.current) return;
+    if (!touchStartX.current || !touchEndX.current) return;
+    if (ignoreSwipe.current) {
+      touchOnScrollable.current = false;
+      ignoreSwipe.current = false;
+      touchStartX.current = 0;
+      touchEndX.current = 0;
+      touchStartY.current = 0;
+      touchEndY.current = 0;
+      return;
+    }
 
     const distanceX = touchStartX.current - touchEndX.current;
     const distanceY = touchStartY.current - touchEndY.current;
