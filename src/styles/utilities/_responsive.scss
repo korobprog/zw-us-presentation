@@ -245,16 +245,20 @@
 
 @media (min-width: 768px) and (max-width: 1023px) {
     body {
-        overflow: hidden;
-        height: 100vh;
-        height: 100dvh;
+        overflow-y: auto;
+        overflow-x: hidden;
+        min-height: 100vh;
+        min-height: 100dvh;
+        height: auto;
         padding: 0;
     }
 
     .app {
-        height: 100vh;
-        height: 100dvh;
-        overflow: hidden;
+        min-height: 100vh;
+        min-height: 100dvh;
+        height: auto;
+        overflow-y: visible;
+        overflow-x: hidden;
         padding: 0;
     }
 
@@ -368,9 +372,11 @@
 @media (max-width: 1024px) and (orientation: landscape) {
     body,
     .app {
-        overflow: hidden;
-        height: 100vh;
-        height: 100dvh;
+        overflow-y: auto;
+        overflow-x: hidden;
+        min-height: 100vh;
+        min-height: 100dvh;
+        height: auto;
         padding: 0;
         margin: 0;
     }
@@ -540,16 +546,20 @@
 
 @media (max-width: 768px) {
     body {
-        overflow: hidden;
-        height: 100vh;
-        height: 100dvh;
+        overflow-y: auto;
+        overflow-x: hidden;
+        min-height: 100vh;
+        min-height: 100dvh;
+        height: auto;
         padding: 0;
     }
 
     .app {
-        height: 100vh;
-        height: 100dvh;
-        overflow: hidden;
+        min-height: 100vh;
+        min-height: 100dvh;
+        height: auto;
+        overflow-y: visible;
+        overflow-x: hidden;
         padding: 0;
     }
 
@@ -560,7 +570,7 @@
         max-width: 100%;
         max-height: 100%;
         box-shadow: none;
-        touch-action: pan-x pan-y pinch-zoom;
+        touch-action: pan-y pinch-zoom;
         overflow: visible;
         position: relative;
     }
