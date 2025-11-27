@@ -127,6 +127,11 @@ function App() {
 
   // Обработчики для свайп-навигации
   const handleTouchStart = (e) => {
+    if (isResponsive) {
+      touchStartX.current = 0;
+      return;
+    }
+
     if (isMobileControls) {
       // На мобильных отдаем приоритет вертикальной прокрутке
       touchStartX.current = 0;
@@ -143,7 +148,7 @@ function App() {
   };
 
   const handleTouchMove = (e) => {
-    if (isMobileControls || !touchStartX.current) return;
+    if (isResponsive || isMobileControls || !touchStartX.current) return;
 
     // Если touch начался на прокручиваемом элементе, не обрабатываем
     touchEndX.current = e.touches[0].clientX;
@@ -162,7 +167,7 @@ function App() {
   };
 
   const handleTouchEnd = () => {
-    if (isMobileControls || !touchStartX.current || !touchEndX.current) return;
+    if (isResponsive || isMobileControls || !touchStartX.current || !touchEndX.current) return;
 
     const distanceX = touchStartX.current - touchEndX.current;
     const distanceY = touchStartY.current - touchEndY.current;
