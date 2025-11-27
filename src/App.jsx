@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef } from 'react';
 import { useTranslation } from 'react-i18next';
 import Controls from './components/Controls';
+import LanguageSelector from './components/LanguageSelector';
 import Slide1 from './components/slides/Slide1';
 import Slide2 from './components/slides/Slide2';
 import Slide3 from './components/slides/Slide3';
@@ -23,6 +24,11 @@ const slides = [
 
 function App() {
   const [currentSlide, setCurrentSlide] = useState(0);
+  // Инициализируем состояние синхронно, проверяя localStorage до первого рендера
+  const [showLanguageSelector, setShowLanguageSelector] = useState(() => {
+    const savedLang = localStorage.getItem('presentationLang');
+    return !savedLang; // Показываем селектор, если языка нет
+  });
   const { i18n } = useTranslation();
   const slideRefs = useRef([]);
 
@@ -32,6 +38,10 @@ function App() {
       i18n.changeLanguage(savedLang);
     }
   }, [i18n]);
+
+  const handleLanguageSelected = () => {
+    setShowLanguageSelector(false);
+  };
 
   useEffect(() => {
     const handleKeyDown = (e) => {
@@ -135,6 +145,14 @@ function App() {
     });
     return content;
   };
+
+  if (showLanguageSelector) {
+    return (
+      <div className="app">
+        <LanguageSelector onLanguageSelect={handleLanguageSelected} />
+      </div>
+    );
+  }
 
   return (
     <div className="app">
