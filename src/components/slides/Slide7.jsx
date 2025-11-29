@@ -1,63 +1,73 @@
+import React from 'react';
 import { useTranslation } from 'react-i18next';
+import circularSystemDiagram from '../../../images/circular_system_diagram.png';
 
 function Slide7() {
   const { t } = useTranslation();
-
   return (
-    <div className="slide-content">
+    <div
+      className="slide-content slide-7-background"
+      style={{
+        backgroundImage: `linear-gradient(rgba(13, 27, 42, 0.85), rgba(13, 27, 42, 0.95)), url(${circularSystemDiagram})`,
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+        backgroundRepeat: 'no-repeat'
+      }}
+    >
       <h2>{t('slide7.h2')}</h2>
-      <p className="subtitle">{t('slide7.subtitle')}</p>
-      <div className="grid-2">
-        <div>
-          <h3>{t('slide7.h3-1')}</h3>
+
+      <div className="advantages-grid">
+        <div className="advantage-card">
+          <h3>{t('slide7.cards.card1.h3')}</h3>
+          <p>{t('slide7.cards.card1.p')}</p>
+          <p className="small-text">{t('slide7.cards.card1.small')}</p>
+        </div>
+
+        <div className="advantage-card">
+          <h3>{t('slide7.cards.card2.h3')}</h3>
+          <ul className="dense-list">
+            <li>{t('slide7.cards.card2.list.li1')}</li>
+            <li>{t('slide7.cards.card2.list.li2')}</li>
+            <li>{t('slide7.cards.card2.list.li3')}</li>
+            <li>{t('slide7.cards.card2.list.li4')}</li>
+            <li>{t('slide7.cards.card2.list.li5')}</li>
+            <li>{t('slide7.cards.card2.list.li6')}</li>
+            <li>{t('slide7.cards.card2.list.li7')}</li>
+            <li>{t('slide7.cards.card2.list.li8')}</li>
+          </ul>
+          <p className="highlight-text">{t('slide7.cards.card2.highlight')}</p>
+        </div>
+
+        <div className="advantage-card">
+          <h3>{t('slide7.cards.card3.h3')}</h3>
+          <p>{t('slide7.cards.card3.p')}</p>
+          <div className="cycle-steps">
+            {t('slide7.cards.card3.steps')}
+          </div>
+          <p className="highlight-text">{t('slide7.cards.card3.highlight')}</p>
+        </div>
+
+        <div className="advantage-card">
+          <h3>{t('slide7.cards.card4.h3')}</h3>
           <ul className="check-list">
-            <li>{t('slide7.li1')}</li>
-            <li>{t('slide7.li2')}</li>
-            <li>{t('slide7.li3')}</li>
-            <li>{t('slide7.li4')}</li>
-            <li>{t('slide7.li5')}</li>
-            <li>{t('slide7.li6')}</li>
-            <li>{t('slide7.li7')}</li>
+            <li>{t('slide7.cards.card4.list.li1')}</li>
+            <li>{t('slide7.cards.card4.list.li2')}</li>
+            <li>{t('slide7.cards.card4.list.li3')}</li>
+            <li>{t('slide7.cards.card4.list.li4')}</li>
+            <li>{t('slide7.cards.card4.list.li5')}</li>
           </ul>
         </div>
-        <div className="chart-box">
-          <h3>{t('slide7.chart-h3')}</h3>
-          <div className="chart-container">
-            <div className="y-axis">
-              <span>70</span>
-              <span>60</span>
-              <span>50</span>
-              <span>40</span>
-              <span>30</span>
-              <span>20</span>
-              <span>10</span>
-              <span>0</span>
-            </div>
-            <div className="bars-area">
-              <div className="bar-group">
-                <div className="bar-label">$8 млрд</div>
-                <div className="bar bar-zw" style={{ '--height': '12%' }}></div>
-                <div className="bar-title">ZW&US</div>
-              </div>
-              <div className="bar-group">
-                <div className="bar-label">$30 млрд</div>
-                <div className="bar bar-brics" style={{ '--height': '45%' }}></div>
-                <div className="bar-title">BRICS</div>
-              </div>
-              <div className="bar-group">
-                <div className="bar-label">$62 млрд</div>
-                <div className="bar bar-global" style={{ '--height': '90%' }}></div>
-                <div className="bar-title">Global</div>
-              </div>
-            </div>
-          </div>
+
+        <div className="advantage-card">
+          <h3>{t('slide7.cards.card5.h3')}</h3>
+          <p>{t('slide7.cards.card5.p')}</p>
+          <p className="highlight-text">{t('slide7.cards.card5.highlight')}</p>
         </div>
       </div>
     </div>
   );
 }
 
-Slide7.title = 'Market & Business Model';
+Slide7.title = 'Преимущества';
 
 export default Slide7;
-

@@ -40,6 +40,13 @@
     flex-wrap: wrap;
 }
 
+.language-option {
+    display: flex;
+    flex-direction: column;
+    gap: 0.9375rem;
+    align-items: center;
+}
+
 .language-selector-btn {
     flex: 1;
     min-width: 12.5rem;
@@ -70,6 +77,31 @@
     box-shadow: 0 0.625rem 1.875rem rgba(169, 255, 94, 0.3);
     border-color: var(--accent-secondary);
     background: rgba(169, 255, 94, 0.1);
+}
+
+.language-download-btn {
+    min-width: 12.5rem;
+    padding: 0.9375rem 1.875rem;
+    background: linear-gradient(135deg, rgba(0, 209, 193, 0.2), rgba(0, 150, 138, 0.2));
+    border: 0.125rem solid rgba(0, 209, 193, 0.4);
+    border-radius: 0.9375rem;
+    color: var(--accent-color);
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-family: 'Montserrat', sans-serif;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.625rem;
+}
+
+.language-download-btn:hover {
+    background: linear-gradient(135deg, rgba(0, 209, 193, 0.3), rgba(0, 150, 138, 0.3));
+    border-color: var(--accent-color);
+    box-shadow: 0 0.3125rem 0.9375rem rgba(0, 209, 193, 0.4);
+    transform: translateY(-0.125rem);
 }
 
 .language-flag {

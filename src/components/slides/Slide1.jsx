@@ -1,25 +1,33 @@
-import { useTranslation, Trans } from 'react-i18next';
+import React from 'react';
+import { useTranslation } from 'react-i18next';
 
 function Slide1() {
   const { t } = useTranslation();
-
   return (
     <div className="slide-content title-slide">
       <div className="overlay"></div>
       <h1>{t('slide1.h1')}</h1>
       <h2>{t('slide1.h2')}</h2>
-      <p>
-        <Trans i18nKey="slide1.direction" components={{ strong: <strong /> }} />
-      </p>
-      <p>
-        <Trans i18nKey="slide1.partners" components={{ strong: <strong /> }} />
-      </p>
-      <p className="quote">{t('slide1.quote')}</p>
+      <div className="content-block">
+        <p>
+          {t('slide1.p')}
+        </p>
+        <div className="management-model">
+          <h3>{t('slide1.management.h3')}</h3>
+          <ul>
+            <li dangerouslySetInnerHTML={{ __html: t('slide1.management.li1') }}></li>
+            <li dangerouslySetInnerHTML={{ __html: t('slide1.management.li2') }}></li>
+          </ul>
+        </div>
+        <div className="mission-block">
+          <p dangerouslySetInnerHTML={{ __html: t('slide1.mission.p') }}></p>
+          <p className="highlight">{t('slide1.mission.highlight')}</p>
+        </div>
+      </div>
     </div>
   );
 }
 
-Slide1.title = 'Title Slide';
+Slide1.title = 'Титульный слайд';
 
 export default Slide1;
-

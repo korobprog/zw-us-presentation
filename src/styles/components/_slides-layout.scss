@@ -1,0 +1,548 @@
+// Slide Layouts
+
+.slide-content {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  padding: 2rem;
+  box-sizing: border-box;
+  color: var(--text-primary, #fff); // Fallback to white
+
+  h1 {
+    font-size: 3.5rem;
+    margin-bottom: 1rem;
+    color: var(--accent-color, #00d4ff);
+    text-transform: uppercase;
+  }
+
+  h2 {
+    font-size: 2.5rem;
+    margin-bottom: 1.5rem;
+    color: var(--text-primary, #fff);
+    border-bottom: 2px solid var(--accent-color, #00d4ff);
+    padding-bottom: 0.5rem;
+    display: inline-block;
+  }
+
+  h3 {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    color: var(--accent-secondary, #b3ff00);
+  }
+
+  p {
+    font-size: 1.2rem;
+    line-height: 1.6;
+    margin-bottom: 1rem;
+  }
+
+  .subtitle {
+    font-size: 1.4rem;
+    color: var(--text-secondary, #ccc);
+    margin-bottom: 2rem;
+  }
+
+  .highlight-box {
+    background: rgba(255, 255, 255, 0.1);
+    padding: 1.5rem;
+    border-radius: 8px;
+    border-left: 4px solid var(--accent-color, #00d4ff);
+    margin-top: auto;
+
+    p {
+      margin: 0;
+      font-weight: bold;
+    }
+  }
+}
+
+// Slide 1
+.title-slide {
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  background: linear-gradient(135deg, #0a192f 0%, #112240 100%);
+
+  h1 {
+    font-size: 4rem;
+    margin-bottom: 0.5rem;
+  }
+
+  h2 {
+    font-size: 2rem;
+    border: none;
+    color: var(--text-secondary, #ccc);
+    margin-bottom: 3rem;
+  }
+
+  .content-block {
+    max-width: 800px;
+    text-align: left;
+    background: rgba(0, 0, 0, 0.3);
+    padding: 2rem;
+    border-radius: 12px;
+  }
+
+  .management-model {
+    margin: 2rem 0;
+
+    h3 {
+      font-size: 1.2rem;
+      color: #fff;
+    }
+
+    ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    li {
+      margin-bottom: 0.5rem;
+      font-size: 1rem;
+    }
+  }
+}
+
+// Slide 2
+.process-chain {
+  margin: 2rem 0;
+
+  .chain-visual {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    background: rgba(255, 255, 255, 0.05);
+    padding: 1rem;
+    border-radius: 8px;
+
+    .chain-item {
+      flex: 1;
+      padding: 1rem;
+      background: rgba(0, 212, 255, 0.1);
+      border: 1px solid var(--accent-color, #00d4ff);
+      border-radius: 6px;
+      text-align: center;
+    }
+
+    .arrow {
+      font-size: 2rem;
+      color: var(--accent-secondary, #b3ff00);
+    }
+  }
+}
+
+// Grids
+.roles-grid,
+.clusters-grid,
+.local-system-grid,
+.advantages-grid,
+.managers-grid,
+.economy-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1.5rem;
+  overflow-y: auto; // Allow scrolling if content overflows
+  padding-right: 0.5rem; // Space for scrollbar
+
+  .role-card,
+  .cluster-card,
+  .system-item,
+  .advantage-card,
+  .manager-card,
+  .economy-card {
+    background: rgba(255, 255, 255, 0.05);
+    padding: 1.5rem;
+    border-radius: 8px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    transition: transform 0.2s;
+
+    &:hover {
+      transform: translateY(-5px);
+      background: rgba(255, 255, 255, 0.1);
+      border-color: var(--accent-color, #00d4ff);
+    }
+
+    h3 {
+      font-size: 1.3rem;
+      margin-bottom: 0.5rem;
+    }
+
+    p {
+      font-size: 1rem;
+      margin: 0;
+    }
+  }
+}
+
+.clusters-grid {
+  grid-template-columns: repeat(3, 1fr);
+
+  .cluster-header {
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    color: var(--text-secondary, #888);
+    margin-bottom: 0.5rem;
+  }
+}
+
+.advantages-grid {
+  grid-template-columns: repeat(3, 1fr);
+
+  .advantage-card {
+
+    &:nth-child(1),
+    &:nth-child(2) {
+      grid-column: span 3;
+    }
+
+    // First two take full width or split differently? Let's make them fit nicely.
+    // Actually, let's stick to auto-fit for responsiveness.
+
+    // Ensure cards have enough opacity to be readable against the background
+    background: rgba(27, 38, 59, 0.7);
+    backdrop-filter: blur(5px);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+  }
+}
+
+// Slide 8 Problem
+.problem-layout {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+
+  .problem-details {
+    display: flex;
+    gap: 2rem;
+
+    .detail-item {
+      flex: 1;
+      padding: 1.5rem;
+      border-radius: 8px;
+
+      &.warning {
+        background: rgba(255, 100, 100, 0.1);
+        border-left: 4px solid #ff4444;
+      }
+
+      &.loss {
+        background: rgba(255, 165, 0, 0.1);
+        border-left: 4px solid #ffbb00;
+      }
+    }
+  }
+}
+
+// Slide 9 Solution
+.solution-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+
+  .solution-col {
+    background: rgba(255, 255, 255, 0.03);
+    padding: 1.5rem;
+    border-radius: 8px;
+
+    ul {
+      padding-left: 1.5rem;
+
+      li {
+        margin-bottom: 0.8rem;
+      }
+    }
+  }
+}
+
+// Slide 10 Timeline
+.timeline-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+
+  .timeline-item {
+    position: relative;
+    background: rgba(255, 255, 255, 0.05);
+    padding: 1.5rem;
+    border-radius: 8px;
+    border-top: 4px solid var(--accent-color, #00d4ff);
+
+    .step-number {
+      position: absolute;
+      top: -1.5rem;
+      left: 1rem;
+      background: var(--accent-color, #00d4ff);
+      color: #000;
+      width: 2rem;
+      height: 2rem;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: bold;
+    }
+  }
+}
+
+// Slide 12 Tech
+.tech-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+
+  .tech-col {
+    background: rgba(255, 255, 255, 0.05);
+    padding: 1.5rem;
+    border-radius: 8px;
+
+    &.highlight {
+      border: 1px solid var(--accent-secondary, #b3ff00);
+    }
+  }
+}
+
+// Slide 13 Pilot
+.pilot-layout {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+
+  .kpi-list {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+
+    .kpi-item {
+      background: rgba(0, 212, 255, 0.1);
+      padding: 1rem;
+      border-radius: 6px;
+      text-align: center;
+
+      .value {
+        display: block;
+        font-size: 1.5rem;
+        font-weight: bold;
+        color: var(--accent-color, #00d4ff);
+      }
+
+      .label {
+        font-size: 0.9rem;
+      }
+    }
+  }
+}
+
+// Slide 14 Economy
+.economy-grid {
+  .economy-card {
+    text-align: center;
+
+    .big-number {
+      font-size: 2.5rem;
+      font-weight: bold;
+      color: var(--accent-secondary, #b3ff00);
+      margin: 0.5rem 0;
+    }
+
+    .sub-number {
+      font-size: 1rem;
+      color: #ccc;
+    }
+
+    &.highlight {
+      border-color: var(--accent-secondary, #b3ff00);
+      background: rgba(179, 255, 0, 0.05);
+    }
+  }
+}
+
+// Slide 16 Development
+.development-plan {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.5rem;
+
+  .plan-item {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem;
+    border-radius: 8px;
+
+    // Ensure items have enough opacity to be readable against the background
+    background: rgba(27, 38, 59, 0.7);
+    backdrop-filter: blur(5px);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+
+    .icon {
+      width: 2.5rem;
+      height: 2.5rem;
+      background: var(--accent-color, #00d4ff);
+      color: #000;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: bold;
+      flex-shrink: 0;
+    }
+  }
+}
+
+// Slide 17 Scaling
+.scaling-flow {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+
+  .flow-step {
+    background: rgba(255, 255, 255, 0.05);
+    padding: 1rem 2rem;
+    border-radius: 30px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    text-align: center;
+    width: 80%;
+
+    &.highlight {
+      background: rgba(0, 212, 255, 0.2);
+      border-color: var(--accent-color, #00d4ff);
+
+      h3 {
+        color: #fff;
+        margin: 0;
+      }
+    }
+
+    h3 {
+      margin: 0;
+      font-size: 1.2rem;
+    }
+
+    .arrow {
+      margin-top: 0.5rem;
+      color: var(--accent-secondary, #b3ff00);
+      display: none;
+    }
+
+    // Hide arrow inside, use gap
+  }
+}
+
+// Slide 18 Contacts
+.contact-slide {
+  justify-content: center;
+  align-items: center;
+
+  .contact-info {
+    text-align: center;
+    background: rgba(255, 255, 255, 0.05);
+    padding: 3rem;
+    border-radius: 16px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+
+    .contact-item {
+      margin: 1.5rem 0;
+      font-size: 1.5rem;
+
+      .label {
+        display: block;
+        font-size: 1rem;
+        color: #888;
+        margin-bottom: 0.5rem;
+      }
+
+      .value {
+        color: var(--accent-color, #00d4ff);
+        text-decoration: none;
+        font-weight: bold;
+      }
+    }
+  }
+}
+
+// Slide 19 Final
+.final-slide {
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  background: linear-gradient(135deg, #0a192f 0%, #112240 100%);
+
+  .cta-block {
+    margin: 2rem 0;
+
+    .cta-text {
+      font-size: 1.5rem;
+      margin-bottom: 1rem;
+      color: #fff;
+      font-weight: 600;
+    }
+  }
+
+  .final-proposal {
+    background: rgba(0, 212, 255, 0.1);
+    padding: 2rem;
+    border-radius: 12px;
+    border: 1px solid var(--accent-color, #00d4ff);
+    margin-top: 2rem;
+
+    p {
+      font-size: 1.3rem;
+      color: #fff;
+      margin-bottom: 1rem;
+    }
+
+    h3 {
+      color: var(--accent-secondary, #b3ff00);
+      margin-top: 1rem;
+      font-size: 1.8rem;
+    }
+  }
+}
+
+// Responsive Adjustments
+@media (max-width: 1024px) {
+
+  .clusters-grid,
+  .advantages-grid,
+  .timeline-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .slide-content {
+    padding: 1rem;
+
+    h1 {
+      font-size: 2rem;
+    }
+
+    h2 {
+      font-size: 1.5rem;
+    }
+  }
+
+  .roles-grid,
+  .clusters-grid,
+  .advantages-grid,
+  .timeline-grid,
+  .tech-grid,
+  .pilot-layout,
+  .economy-grid,
+  .development-plan {
+    grid-template-columns: 1fr;
+  }
+
+  .process-chain .chain-visual {
+    flex-direction: column;
+
+    .arrow {
+      transform: rotate(90deg);
+    }
+  }
+
+  .solution-grid {
+    grid-template-columns: 1fr;
+  }
+}

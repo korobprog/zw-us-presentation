@@ -1,7 +1,8 @@
 import { useTranslation } from 'react-i18next';
+import { downloadRussianPPTX, downloadEnglishPPTX } from '../utils/downloadPPTX';
 
 function LanguageSelector({ onLanguageSelect }) {
-  const { i18n } = useTranslation();
+  const { i18n, t } = useTranslation();
 
   const handleLanguageSelect = (lang) => {
     i18n.changeLanguage(lang);
@@ -14,20 +15,42 @@ function LanguageSelector({ onLanguageSelect }) {
       <div className="language-selector-content">
         <h1 className="language-selector-title">Выберите язык / Choose Language</h1>
         <div className="language-selector-buttons">
-          <button 
-            className="language-selector-btn language-selector-btn-ru"
-            onClick={() => handleLanguageSelect('ru')}
-          >
-            <span className="language-flag">🇷🇺</span>
-            <span className="language-name">Русский</span>
-          </button>
-          <button 
-            className="language-selector-btn language-selector-btn-en"
-            onClick={() => handleLanguageSelect('en')}
-          >
-            <span className="language-flag">🇬🇧</span>
-            <span className="language-name">English</span>
-          </button>
+          <div className="language-option">
+            <button
+              className="language-selector-btn language-selector-btn-ru"
+              onClick={() => handleLanguageSelect('ru')}
+            >
+              <span className="language-flag">🇷🇺</span>
+              <span className="language-name">Русский</span>
+            </button>
+            <button
+              className="language-download-btn"
+              onClick={(e) => {
+                e.stopPropagation();
+                downloadRussianPPTX();
+              }}
+            >
+              📥 {t('downloadPcBtn')}
+            </button>
+          </div>
+          <div className="language-option">
+            <button
+              className="language-selector-btn language-selector-btn-en"
+              onClick={() => handleLanguageSelect('en')}
+            >
+              <span className="language-flag">🇬🇧</span>
+              <span className="language-name">English</span>
+            </button>
+            <button
+              className="language-download-btn"
+              onClick={(e) => {
+                e.stopPropagation();
+                downloadEnglishPPTX();
+              }}
+            >
+              📥 {t('downloadPcBtnEng')}
+            </button>
+          </div>
         </div>
       </div>
     </div>

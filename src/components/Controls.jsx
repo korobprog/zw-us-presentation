@@ -1,5 +1,6 @@
 import { useState, useEffect, useRef } from 'react';
 import { useTranslation } from 'react-i18next';
+import { downloadPPTXByLanguage } from '../utils/downloadPPTX';
 
 function Controls({
   currentSlide,
@@ -32,7 +33,7 @@ function Controls({
 
   const handleExportPPTX = () => {
     setShowExportMenu(false);
-    onExport();
+    downloadPPTXByLanguage(i18n.language);
   };
 
   const handleExportPDF = () => {
@@ -77,13 +78,13 @@ function Controls({
         </button>
         {showLangMenu && (
           <div className="lang-menu">
-            <button 
+            <button
               className={`lang-menu-item ${i18n.language === 'en' ? 'active' : ''}`}
               onClick={() => changeLanguage('en')}
             >
               English
             </button>
-            <button 
+            <button
               className={`lang-menu-item ${i18n.language === 'ru' ? 'active' : ''}`}
               onClick={() => changeLanguage('ru')}
             >
@@ -100,9 +101,6 @@ function Controls({
           <div className="export-menu">
             <button className="export-menu-item" onClick={handleExportPPTX}>
               {t('exportPptxBtn')}
-            </button>
-            <button className="export-menu-item" onClick={handleExportPDF}>
-              {t('exportPdfBtn')}
             </button>
           </div>
         )}
