@@ -4,9 +4,14 @@ import { useTranslation } from 'react-i18next';
 function Slide2() {
   const { t } = useTranslation();
   return (
-    <div className="slide-content">
+    <div className="slide-content slide2-content">
       <h2>{t('slide2.h2')}</h2>
       <div className="content-block">
+        <img 
+          src="/images/team_1764206984411.png" 
+          alt="Team" 
+          className="team-image"
+        />
         <p className="intro-text">
           {t('slide2.intro')}
         </p>

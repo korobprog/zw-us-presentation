@@ -1,0 +1,300 @@
+// Slide 1 - Title Slide
+// Современная верстка с использованием лучших практик: mobile-first, CSS переменные, семантическая структура
+
+.title-slide {
+    // Базовые стили - mobile-first подход
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    min-height: 100%;
+    padding: 1.5rem;
+    padding-bottom: calc(1.5rem + var(--controls-offset, 4.5rem));
+    box-sizing: border-box;
+    gap: 1.5rem;
+    position: relative;
+    background: transparent;
+    overflow: visible;
+
+    // Overlay скрыт
+    .overlay {
+        display: none;
+    }
+
+    // Изображение диаграммы
+    .diagram-image {
+        display: block;
+        width: 90%;
+        max-width: 100%;
+        height: auto;
+        margin: 0 auto;
+        margin-bottom: 1rem;
+        object-fit: contain;
+        object-position: center;
+    }
+
+    // Заголовок H1
+    h1 {
+        font-size: clamp(1.75rem, 5vw, 3.5rem);
+        line-height: 1.2;
+        font-weight: 700;
+        color: var(--text-color, #FFFFFF);
+        margin: 0;
+        margin-bottom: 0.75rem;
+        word-wrap: break-word;
+        overflow-wrap: break-word;
+        hyphens: auto;
+    }
+
+    // Подзаголовок H2
+    h2 {
+        font-size: clamp(1rem, 3vw, 2rem);
+        line-height: 1.3;
+        font-weight: 400;
+        color: var(--accent-color, #00D1C1);
+        margin: 0;
+        margin-bottom: 1.5rem;
+        word-wrap: break-word;
+        overflow-wrap: break-word;
+    }
+
+    // Блок контента
+    .content-block {
+        display: flex;
+        flex-direction: column;
+        gap: 1.5rem;
+        width: 100%;
+
+        // Параграф
+        p {
+            font-size: clamp(0.875rem, 2vw, 1.125rem);
+            line-height: 1.7;
+            color: rgba(255, 255, 255, 0.95);
+            margin: 0;
+            word-wrap: break-word;
+            overflow-wrap: break-word;
+            hyphens: auto;
+        }
+    }
+
+    // Модель управления
+    .management-model {
+        display: flex;
+        flex-direction: column;
+        gap: 0.75rem;
+        width: 100%;
+
+        h3 {
+            font-size: clamp(1rem, 2.5vw, 1.5rem);
+            line-height: 1.4;
+            font-weight: 600;
+            color: var(--text-color, #FFFFFF);
+            margin: 0;
+            margin-bottom: 0.5rem;
+            word-wrap: break-word;
+            overflow-wrap: break-word;
+        }
+
+        ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        li {
+            font-size: clamp(0.875rem, 2vw, 1.125rem);
+            line-height: 1.6;
+            color: rgba(255, 255, 255, 0.95);
+            padding-left: 1.5rem;
+            position: relative;
+            word-wrap: break-word;
+            overflow-wrap: break-word;
+
+            &::before {
+                content: '▸';
+                position: absolute;
+                left: 0;
+                color: var(--accent-secondary, #A9FF5E);
+                font-weight: 600;
+            }
+
+            strong {
+                color: var(--text-color, #FFFFFF);
+                font-weight: 600;
+            }
+        }
+    }
+
+    // Блок миссии
+    .mission-block {
+        display: flex;
+        flex-direction: column;
+        gap: 0.75rem;
+        width: 100%;
+
+        p {
+            font-size: clamp(0.875rem, 2vw, 1.125rem);
+            line-height: 1.7;
+            color: rgba(255, 255, 255, 0.95);
+            margin: 0;
+            word-wrap: break-word;
+            overflow-wrap: break-word;
+
+            strong {
+                color: var(--text-color, #FFFFFF);
+                font-weight: 600;
+            }
+        }
+
+        .highlight {
+            font-size: clamp(1rem, 2.5vw, 1.25rem);
+            line-height: 1.5;
+            font-weight: 600;
+            color: var(--accent-secondary, #A9FF5E);
+            margin: 0;
+            margin-top: 0.5rem;
+            word-wrap: break-word;
+            overflow-wrap: break-word;
+        }
+    }
+}
+
+// Планшет (768px и выше)
+@media (min-width: 768px) {
+    .title-slide {
+        padding: 2rem;
+        padding-bottom: calc(2rem + var(--controls-offset, 4.5rem));
+        gap: 2rem;
+
+        .diagram-image {
+            width: 70%;
+            max-width: 600px;
+            margin-bottom: 2rem;
+        }
+
+        h1 {
+            margin-bottom: 1rem;
+        }
+
+        h2 {
+            margin-bottom: 1.5rem;
+        }
+
+        .content-block {
+            gap: 2rem;
+        }
+    }
+}
+
+// Десктоп (1024px и выше)
+@media (min-width: 1024px) {
+    .title-slide {
+        padding: 3rem;
+        padding-bottom: calc(3rem + var(--controls-offset, 4.5rem));
+        gap: 2.5rem;
+        max-width: 100%;
+        width: 100%;
+
+        .diagram-image {
+            width: 55%;
+            max-width: 700px;
+            margin-bottom: 2rem;
+        }
+
+        h1 {
+            font-size: clamp(2.5rem, 4vw, 4rem);
+        }
+
+        h2 {
+            font-size: clamp(1.5rem, 2.5vw, 2rem);
+        }
+
+        .content-block {
+            gap: 2.5rem;
+        }
+    }
+}
+
+// Большие экраны (1440px и выше)
+@media (min-width: 1440px) {
+    .title-slide {
+        padding: clamp(2rem, 4vw, 4rem) clamp(2.5rem, 5vw, 5rem) !important;
+        padding-bottom: calc(clamp(2rem, 4vw, 4rem) + var(--controls-offset, 4.5rem)) !important;
+        gap: 3rem;
+        margin-top: 0 !important;
+        padding-top: clamp(2rem, 4vw, 4rem) !important;
+        position: relative !important;
+        top: 0 !important;
+        overflow-y: auto !important;
+        overflow-x: visible !important;
+
+        h1 {
+            margin-top: 0 !important;
+            padding-top: 0 !important;
+        }
+
+        .diagram-image {
+            width: 50%;
+            max-width: 800px;
+            margin-bottom: 2.5rem;
+            margin-top: 0 !important;
+            padding-top: 0 !important;
+        }
+    }
+}
+
+// Очень маленькие экраны (до 480px)
+@media (max-width: 480px) {
+    .title-slide {
+        padding: 1rem;
+        padding-bottom: calc(1rem + var(--controls-offset, 4.5rem));
+        gap: 1rem;
+
+        .diagram-image {
+            width: 95%;
+            margin-bottom: 0.75rem;
+        }
+
+        h1 {
+            font-size: clamp(1.5rem, 6vw, 2rem);
+        }
+
+        h2 {
+            font-size: clamp(0.875rem, 3vw, 1.2rem);
+        }
+    }
+}
+
+// Landscape ориентация на мобильных
+@media (max-width: 1024px) and (orientation: landscape) {
+    .title-slide {
+        padding: 1rem 1.5rem;
+        gap: 1rem;
+
+        .diagram-image {
+            width: 50%;
+            max-width: 400px;
+            margin-bottom: 0.75rem;
+        }
+
+        h1 {
+            margin-bottom: 0.5rem;
+        }
+
+        h2 {
+            margin-bottom: 1rem;
+        }
+    }
+}
+
+// Поддержка prefers-reduced-motion
+@media (prefers-reduced-motion: reduce) {
+    .title-slide {
+        * {
+            transition: none !important;
+            animation: none !important;
+        }
+    }
+}

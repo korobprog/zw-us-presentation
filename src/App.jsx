@@ -71,7 +71,8 @@ function App() {
 
       // Threshold for switching to responsive mode
       // User complained about 1024px, so we include it in responsive mode
-      if (windowWidth <= 1024) {
+      // Also use responsive mode on very large screens (1440px+) to avoid scaling issues
+      if (windowWidth <= 1024 || windowWidth >= 1440) {
         console.log('Switching to Responsive Mode');
         setIsResponsive(true);
         setScale(1); // Reset scale for responsive mode
@@ -92,6 +93,36 @@ function App() {
 
     return () => window.removeEventListener('resize', handleResize);
   }, []);
+
+  // Предотвращение подпрыгивания при скролле на больших экранах
+  useEffect(() => {
+    if (window.innerWidth < 1440) return;
+
+    const activeSlide = slideRefs.current[currentSlide];
+    if (!activeSlide) return;
+
+    const handleScroll = () => {
+      requestAnimationFrame(() => {
+        // Фиксируем позицию скролла на 0, если пытаемся прокрутить выше
+        if (activeSlide.scrollTop < 0) {
+          activeSlide.scrollTop = 0;
+        }
+        
+        // Фиксируем позицию скролла на максимуме, если пытаемся прокрутить ниже
+        const maxScroll = activeSlide.scrollHeight - activeSlide.clientHeight;
+        if (activeSlide.scrollTop > maxScroll) {
+          activeSlide.scrollTop = maxScroll;
+        }
+      });
+    };
+
+    // Обработчик скролла для фиксации границ (только для предотвращения отрицательных значений)
+    activeSlide.addEventListener('scroll', handleScroll, { passive: true });
+
+    return () => {
+      activeSlide.removeEventListener('scroll', handleScroll);
+    };
+  }, [currentSlide]);
 
   const [showSwipeHint, setShowSwipeHint] = useState(false);
 

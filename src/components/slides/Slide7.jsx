@@ -16,6 +16,12 @@ function Slide7() {
     >
       <h2>{t('slide7.h2')}</h2>
 
+      <img 
+        src="/images/construction_materials_1764206946189.png" 
+        alt="Construction Materials" 
+        className="construction-materials-image"
+      />
+
       <div className="advantages-grid">
         <div className="advantage-card">
           <h3>{t('slide7.cards.card1.h3')}</h3>

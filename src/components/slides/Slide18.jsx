@@ -12,12 +12,12 @@ function Slide18() {
 
                 <div className="contact-item">
                     <span className="label">{t('slide18.info.whatsapp')}</span>
-                    <span className="value">+7 900 000-00-00</span>
+                    <span className="value">{t('slide18.info.whatsappValue')}</span>
                 </div>
 
                 <div className="contact-item">
                     <span className="label">{t('slide18.info.email')}</span>
-                    <span className="value">info@zw-us.com</span>
+                    <span className="value">{t('slide18.info.emailValue')}</span>
                 </div>
             </div>
         </div>

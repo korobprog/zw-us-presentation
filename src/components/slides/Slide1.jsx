@@ -8,6 +8,11 @@ function Slide1() {
       <div className="overlay"></div>
       <h1>{t('slide1.h1')}</h1>
       <h2>{t('slide1.h2')}</h2>
+      <img 
+        src="/images/circular_system_diagram.png" 
+        alt="Circular Economy System Diagram" 
+        className="diagram-image"
+      />
       <div className="content-block">
         <p>
           {t('slide1.p')}

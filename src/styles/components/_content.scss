@@ -16,7 +16,8 @@
     display: flex;
     gap: var(--grid-gap);
     align-items: center;
-    height: 80%;
+    min-height: auto;
+    flex: 1;
 
     &.reverse {
         flex-direction: row-reverse;
@@ -345,4 +346,3 @@
         background: var(--accent-color);
     }
 }
-
